@@ -26,4 +26,5 @@ UI：天马咲希型千趣
 
 特别感谢：魔法猫咪汉化组（授权[翻译](https://github.com/mahouNyanko/amachoco3-l10n)）、[Imavoyc](https://github.com/Imavoyc)（反汇编脚本提供，剧情脚本操作码分析）、阡陌（renpy函数一些实现建议）、KB612（立绘名修正）
 
-使用到的开源工具：[engine_bgi](https://github.com/KlparetlR/engine_bgi)（反编译剧情脚本）、[Bgi_asdis](https://github.com/KlparetlR/Bgi_asdis)（分析函数参数作用）、[MisakaHookFinder](https://github.com/hanmin0822/MisakaHookFinder)（修正立绘参数）
+
+使用到的开源工具：[engine_bgi](https://github.com/KlparetlR/engine_bgi)（反编译剧情脚本）、[Bgi_asdis](https://github.com/KlparetlR/Bgi_asdis)（分析函数参数作用）、[MisakaHookFinder](https://github.com/hanmin0822/MisakaHookFinder)（修正立绘参数）、[GARbro](https://github.com/morkt/GARbro)

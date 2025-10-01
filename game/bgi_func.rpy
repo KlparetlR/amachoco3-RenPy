@@ -147,6 +147,8 @@ init python:
             renpy.say(speaker, formatted_text)
         if not persistent.voice_interrupt_on_page:
             renpy.music.stop(channel="voice")
+        if store.EF_KAISOU_ACTIVE == True:
+            store.EF_KAISOU_ACTIVE = False
         if store.FLASH_CALLED == True:
             store.FLASH_CALLED = False
         if getattr(store, 'interruptible_cg_tag', None):
@@ -1080,4 +1082,5 @@ init python:
         renpy.show("white_bg", what=Solid("#ffffff"), at_list=[Fadeout_effect(duration/ 1000.0)], layer="bustlayer",zorder=10)
         renpy.pause(duration/ 1000.0)
         store.interruptible_bserase_tags.append("white_bg")
+
 

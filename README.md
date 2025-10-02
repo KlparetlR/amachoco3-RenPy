@@ -4,7 +4,7 @@
 
 ## 协议
 
-本库的协议为[CC-BY-NC-ND 4.0](https://github.com/KlparetlR/amachoco3-RenPy/LICENSE)，即
+本库的协议为[CC-BY-NC-ND 4.0](https://github.com/KlparetlR/amachoco3-RenPy/blob/main/LICENSE)，即
 
 BY（Attribution，署名归属）：您可自由地分享本作品，但您必须注明创作者的版权归属。
 
@@ -28,4 +28,5 @@ UI：天马咲希型千趣
 
 
 使用到的开源工具：[engine_bgi](https://github.com/KlparetlR/engine_bgi)（反编译剧情脚本）、[Bgi_asdis](https://github.com/KlparetlR/Bgi_asdis)（分析函数参数作用）、[MisakaHookFinder](https://github.com/hanmin0822/MisakaHookFinder)（修正立绘参数）、[GARbro](https://github.com/morkt/GARbro)
+
 

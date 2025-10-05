@@ -29,4 +29,7 @@ UI：天马咲希型千趣
 
 使用到的开源工具：[engine_bgi](https://github.com/KlparetlR/engine_bgi)（反编译剧情脚本）、[Bgi_asdis](https://github.com/KlparetlR/Bgi_asdis)（分析函数参数作用）、[MisakaHookFinder](https://github.com/hanmin0822/MisakaHookFinder)（修正立绘参数）、[GARbro](https://github.com/morkt/GARbro)
 
+## 注意事项
+
+使用8.2.1版本的renpy（含一个rpy文件魔改），尽量不要使用高版本（安卓负优化这块）
 

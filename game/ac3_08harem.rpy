@@ -1,5 +1,6 @@
 label ac3_08harem:
     $ persistent.last_voice = None
+    $ store._window = False
     $ _PresetBG(["black", 1000, 0, 0])
     pause(2.0)
     $ f_391([700, 1])

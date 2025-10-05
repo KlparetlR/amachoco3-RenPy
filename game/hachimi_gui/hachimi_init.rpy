@@ -1,9 +1,4 @@
-# 以下代码全部由天马咲希型千趣编写，属于 UI 代码
-# 禁止未通知本人的情况下修改本文件代码的任何部分或数值
-# 一旦未经告知本人而进行修改，出现任何问题，不负责任何维护义务，因为那不是我造成的，不要给我徒增工作量，谢谢喵
-# 目前的代码已经过充分的测试验证过可行性与稳定性，因为修改文件导致新增的潜在Bug，也请自己测试与负责
-
-define config.skip_delay = 1
+define config.skip_delay = 95
 
 transform main_menu_show_btn(wait = 0):
     xoffset -100
@@ -34,18 +29,24 @@ screen movie_player(filename, video_end):
     add "images/misc/black.png"
     on "show" action Stop("music")
     add Movie(play=f"mv/{filename}", loop=False, channel='movie') xalign 0.5 yalign 0.5
-    textbutton "跳过▸":
+    # 全屏按钮阻止点击事件穿透,防止视频重新播放
+    button:
+        xfill True
+        yfill True
+        action NullAction()
+    
+    textbutton "{font=font/LoliSC.ttc}跳过▸{/font}":
         xalign 0.95
         yalign 0.05
         text_size 60
         text_color "#ffffff"
         text_outlines [(2, "#000000", 0, 0)]
         text_hover_color "#ff6666"
-        action [Hide("movie_player"), Return()]  
-    key "K_ESCAPE" action [Hide("movie_player"), Return()]
-    key "mousedown_3" action [Hide("movie_player"), Return()]
+        action [Function(renpy.music.stop, channel="movie", fadeout=0), Hide("movie_player"), Return()]  
+    key "K_ESCAPE" action [Function(renpy.music.stop, channel="movie", fadeout=0), Hide("movie_player"), Return()]
+    key "mousedown_3" action [Function(renpy.music.stop, channel="movie", fadeout=0), Hide("movie_player"), Return()]
     if video_end is not None and video_end > 0:
-        timer video_end action [Hide("movie_player"), Return()]
+        timer video_end action [Function(renpy.music.stop, channel="movie", fadeout=0), Hide("movie_player"), Return()]
 
 define config.rollback_length = 99999
 define config.hard_rollback_limit = 99999
@@ -78,6 +79,8 @@ default persistent.text_normal=True
 
 default persistent.text_auto=False
 
+define config.default_music_volume = 0.75
+
 screen textbox_preview():
     tag preview
     frame:
@@ -95,10 +98,6 @@ screen textbox_preview():
                 yoffset 10
                 color "#606060"
                 slow_cps preferences.afm_text_cps
-
-#default temp_voice_path = None
-
-default preferences.voice_sustain = True
 
 default preferences.wait_voice = True
 
@@ -120,7 +119,7 @@ define config.emphasize_audio_volume = 0.45
 
 default persistent.voicing_bgm_volume = 0.45
 
-default preferences.volume.music = 0.75
+#default preferences.volume.music = 0.75
 
 init python:
     def _apply_voicing_bgm_volume_if_needed():
@@ -155,21 +154,22 @@ screen cg_viewer(group, index=0):
     modal True
     default i = index
     $ imgs = cg_groups.get(group, [])
+    $ imgs_count = len(imgs)
 
     key "mousedown_3" action [With(Dissolve(0.3)), Hide("cg_viewer")]
     key "K_ESCAPE" action [With(Dissolve(0.3)), Hide("cg_viewer")]
     key "K_LEFT" action If(i > 0, [SetScreenVariable("i", i-1), Function(lambda : renpy.transition(Dissolve(0.30)))])
-    key "K_RIGHT" action If(i < len(imgs)-1, [SetScreenVariable("i", i+1), Function(lambda : renpy.transition(Dissolve(0.30)))], [With(Dissolve(0.3)), Hide("cg_viewer")])
+    key "K_RIGHT" action If(i < imgs_count-1, [SetScreenVariable("i", i+1), Function(lambda : renpy.transition(Dissolve(0.30)))], [With(Dissolve(0.3)), Hide("cg_viewer")])
 
     if imgs:
         add imgs[i]
-        text "[i+1]/[len(imgs)]":
+        text "[i+1]/[imgs_count]":
             xpos 0.98 ypos 0.02 xanchor 1.0 size 70 color "#ffffff" outlines [(2, "#000000",absolute(0), absolute(0))]
         button:
             xfill True
             yfill True
             action If(
-                i < len(imgs)-1,
+                i < imgs_count-1,
                 [ SetScreenVariable("i", i+1),
                 Function(lambda : renpy.transition(Dissolve(0.30))) ],
                 [ With(Dissolve(0.3)), Hide("cg_viewer") ]
@@ -291,7 +291,7 @@ init python:
         )
 
 init python:
-    mr = MusicRoom(fadein = 0.5 , fadeout = 0.5)
+    mr = MusicRoom(fadein = 0.0 , fadeout = 0.0)
     mr.add("audio/bgm/bgm001.ogg",always_unlocked = True)
     mr.add("audio/bgm/bgm002.ogg",always_unlocked = True)
     mr.add("audio/bgm/bgm003.ogg",always_unlocked = True)
@@ -354,7 +354,7 @@ init python:
 
         return result
 
-define config.pre_screenshot_actions = [Call("_hide_windows")]
+#define config.pre_screenshot_actions = [Call("_hide_windows")]
 
 init python:
 

@@ -144,17 +144,32 @@ screen say(who, what):
     else:
         $ preferences.text_cps = preferences.afm_text_cps
     $ textbox_alpha = 1 - getattr(persistent, 'textbox_transparency', 0.15)
+    
+    python:
+        current_mode = store.textbox_mode if store.textbox_mode is not None else 0
+        if current_mode == 1:
+            textbox_image = "gui/textbox1.png"
+            namebox_image = "gui/namebox1.png"
+            voice_image = "gui/hachimi_gui/quick_menu/qm_voice_1_pink.png"
+        elif current_mode == 2:
+            textbox_image = "gui/textbox2.png"
+            namebox_image = "gui/namebox2.png"
+            voice_image = "gui/hachimi_gui/quick_menu/qm_voice_1.png"
+        else:
+            textbox_image = "gui/textbox.png"
+            namebox_image = "gui/namebox.png"
+            voice_image = "gui/hachimi_gui/quick_menu/qm_voice_1.png"
 
     window:
         id "window"
-        background Transform("gui/textbox.png", alpha=textbox_alpha)
+        background Transform(textbox_image, alpha=textbox_alpha)
         yalign 1.05
         if who is not None:
 
             window:
                 
                 id "namebox"
-                background Transform("gui/namebox.png", alpha=textbox_alpha)
+                background Transform(namebox_image, alpha=textbox_alpha)
                 #xalign 0.08
                 yalign -0.33
                 style "namebox"
@@ -162,9 +177,9 @@ screen say(who, what):
                 if _last_voice_path:
                     imagebutton:
                         xoffset -20
-                        yoffset -9
-                        idle "gui/hachimi_gui/quick_menu/qm_voice_1.png"
-                        hover "gui/hachimi_gui/quick_menu/qm_voice_2.png"
+                        yoffset -6
+                        idle voice_image
+                        hover white_overlay_0(voice_image, 0.35, 78, 78)
                         action Play('voice', _last_voice_path)
                 
                 text who id "who"  xoffset 160
@@ -247,7 +262,8 @@ screen say(who, what):
                 else:
                     action [With(Dissolve(0.3)), Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),QuickSave(message="快速存档成功")]
         imagebutton:
-            idle "gui/hachimi_gui/quick_menu/qm_quick_load_1.png" at Transform(zoom=0.85)
+            insensitive "gui/hachimi_gui/quick_menu/qm_quick_load_0.png" at Transform(zoom=0.85)
+            idle "gui/hachimi_gui/quick_menu/qm_quick_load_1.png"
             hover "gui/hachimi_gui/quick_menu/qm_quick_load_2.png"
             selected_idle "gui/hachimi_gui/quick_menu/qm_quick_load_3.png"
             selected_hover "gui/hachimi_gui/quick_menu/qm_quick_load_3.png"
@@ -803,7 +819,7 @@ screen file_slots(title):
                     spacing gui.page_spacing
 
                     textbutton _("<") action FilePagePrevious()
-                    key "save_page_prev" action FilePagePrevious()
+                    #key "save_page_prev" action FilePagePrevious()
 
                     if config.has_autosave:
                         textbutton _("{#auto_page}A") action FilePage("auto")
@@ -816,7 +832,7 @@ screen file_slots(title):
                         textbutton "[page]" action FilePage(page)
 
                     textbutton _(">") action FilePageNext()
-                    key "save_page_next" action FilePageNext()
+                    #key "save_page_next" action FilePageNext()
 
                 if config.has_sync:
                     if CurrentScreenName() == "save":
@@ -1516,7 +1532,7 @@ screen notify(message):
     frame at notify_appear:
         text "[message!tq]"
 
-    timer 3.25 action Hide('notify')
+    timer 4.5 action Hide('notify')
 
 
 transform notify_appear:

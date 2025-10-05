@@ -2,7 +2,7 @@ image hachimi_lanuch = "gui/hachimi_gui/title/title_lanuch_bg.png"
 image hachimi_main = "gui/main_menu.png"
 default logo_ses = [
     "all_t0002",
-    "mit_t0004",
+    "mik_t0004",
     "chi_t0004",
     "ich_t0004",
     "nan_t0004",

@@ -1,8 +1,3 @@
-# 以下代码全部由天马咲希型千趣编写，属于 UI 代码
-# 禁止未通知本人的情况下修改本文件代码的任何部分或数值
-# 一旦未经告知本人而进行修改，出现任何问题，不负责任何维护义务，因为那不是我造成的，不要给我徒增工作量，谢谢喵
-# 目前的代码已经过充分的测试验证过可行性与稳定性，因为修改文件导致新增的潜在Bug，也请自己测试与负责
-
 default persistent.tutorial_shown = False
 
 screen hachimi_chapter():
@@ -25,7 +20,7 @@ screen hachimi_chapter():
                 Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),
                 If(persistent.tutorial_shown,
                     Start("ac3_01mikuri"),
-                    Confirm("上滑：打开历史文本界面\n下滑：打开存档界面\n左滑：回退上一条对话\n右滑：快进\n此教程在您确认后不再显示，请牢记",
+                    Confirm("上滑↑：打开历史文本界面\n下滑↓：打开存档界面\n左滑←：回退上一条对话\n右滑→：快进\n手势教程在您确认后不再显示，请截图或牢记",
                         [SetVariable("persistent.tutorial_shown", True), Start("ac3_01mikuri")]
                     )
                 )
@@ -42,7 +37,7 @@ screen hachimi_chapter():
                 Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),
                 If(persistent.tutorial_shown,
                     Start("ac3_02chieri"),
-                    Confirm("上滑：打开历史文本界面\n下滑：打开存档界面\n左滑：回退上一条对话\n右滑：快进\n此教程在您确认后不再显示，请牢记",
+                    Confirm("上滑↑：打开历史文本界面\n下滑↓：打开存档界面\n左滑←：回退上一条对话\n右滑→：快进\n手势教程在您确认后不再显示，请截图或牢记",
                         [SetVariable("persistent.tutorial_shown", True), Start("ac3_02chieri")]
                     )
                 )
@@ -59,7 +54,7 @@ screen hachimi_chapter():
                 Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),
                 If(persistent.tutorial_shown,
                     Start("ac3_03ichika"),
-                    Confirm("上滑：打开历史文本界面\n下滑：打开存档界面\n左滑：回退上一条对话\n右滑：快进\n此教程在您确认后不再显示，请牢记",
+                    Confirm("上滑↑：打开历史文本界面\n下滑↓：打开存档界面\n左滑←：回退上一条对话\n右滑→：快进\n手势教程在您确认后不再显示，请截图或牢记",
                         [SetVariable("persistent.tutorial_shown", True), Start("ac3_03ichika")]
                     )
                 )
@@ -76,7 +71,7 @@ screen hachimi_chapter():
                 Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),
                 If(persistent.tutorial_shown,
                     Start("ac3_04nana"),
-                    Confirm("上滑：打开历史文本界面\n下滑：打开存档界面\n左滑：回退上一条对话\n右滑：快进\n此教程在您确认后不再显示，请牢记",
+                    Confirm("上滑↑：打开历史文本界面\n下滑↓：打开存档界面\n左滑←：回退上一条对话\n右滑→：快进\n手势教程在您确认后不再显示，请截图或牢记",
                         [SetVariable("persistent.tutorial_shown", True), Start("ac3_04nana")]
                     )
                 )
@@ -97,7 +92,7 @@ screen hachimi_chapter():
                 Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),
                 If(persistent.tutorial_shown,
                     Start("ac3_05kaguya"),
-                    Confirm("上滑：打开历史文本界面\n下滑：打开存档界面\n左滑：回退上一条对话\n右滑：快进\n此教程在您确认后不再显示，请牢记",
+                    Confirm("上滑↑：打开历史文本界面\n下滑↓：打开存档界面\n左滑←：回退上一条对话\n右滑→：快进\n手势教程在您确认后不再显示，请截图或牢记",
                         [SetVariable("persistent.tutorial_shown", True), Start("ac3_05kaguya")]
                     )
                 )
@@ -114,7 +109,7 @@ screen hachimi_chapter():
                 Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),
                 If(persistent.tutorial_shown,
                     Start("ac3_06mitsuki1"),
-                    Confirm("上滑：打开历史文本界面\n下滑：打开存档界面\n左滑：回退上一条对话\n右滑：快进\n此教程在您确认后不再显示，请牢记",
+                    Confirm("上滑↑：打开历史文本界面\n下滑↓：打开存档界面\n左滑←：回退上一条对话\n右滑→：快进\n手势教程在您确认后不再显示，请截图或牢记",
                         [SetVariable("persistent.tutorial_shown", True), Start("ac3_06mitsuki1")]
                     )
                 )
@@ -131,7 +126,7 @@ screen hachimi_chapter():
                 Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),
                 If(persistent.tutorial_shown,
                     Start("ac3_07kohana1"),
-                    Confirm("上滑：打开历史文本界面\n下滑：打开存档界面\n左滑：回退上一条对话\n右滑：快进\n此教程在您确认后不再显示，请牢记",
+                    Confirm("上滑↑：打开历史文本界面\n下滑↓：打开存档界面\n左滑←：回退上一条对话\n右滑→：快进\n手势教程在您确认后不再显示，请截图或牢记",
                         [SetVariable("persistent.tutorial_shown", True), Start("ac3_07kohana1")]
                     )
                 )

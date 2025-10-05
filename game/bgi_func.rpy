@@ -12,8 +12,8 @@ default CURRENT_EVENT_CG = {}
 default SCHEDULED_PENDING_LAYERS = []
 default SCHEDULED_LAST_LAYERS = []
 default temp_voice_path = None
-default textbox_mode = None
-default persistent.voice_interrupt_on_page = False
+default textbox_mode = 0
+default persistent.voice_interrupt_on_page = True
 default persistent.character_volumes = {
     "chi": 1.0,
     "ich": 1.0,
@@ -30,6 +30,7 @@ default persistent.complete_flags = [False,False,False,False,False,False,False] 
 default interruptible_cg_tag = None
 default interruptible_bserase_tags = []
 default MOVEBS_DELAY = 0
+default WHITE_BG_ACTIVE = False
 init python:
     import re,math,random
     renpy.music.register_channel("se","sfx")
@@ -77,6 +78,11 @@ init python:
     }
 
 #======辅助函数定义======
+    def create_atl_dissolve(old_img, new_img, trans_time):
+        old_fading = At(old_img, Fadeout_effect(trans_time))
+        new_fading = At(new_img, Fadein_effect(trans_time))
+        return Transform(Fixed(old_fading, new_fading),xpos=0,ypos=0,anchor=(0, 0)) #最tm操蛋的研究出来了，至少有十几天的牺牲
+
     def clear_all(window):
         renpy.hide_screen("solid_bg")
         # 清理非ef_kaisou的SPR_DISPLAY条目
@@ -133,8 +139,6 @@ init python:
             # 并立即清空临时变量，防止它影响下一句台词
             store.temp_voice_path = None
         u1, u2, u3, speaker, text = params
-        pattern = re.compile(r'<r(.*?)>(.*?)</r>')
-        text = pattern.sub(r'{rb}\2{/rb}{rt}\1{/rt}', text)
         if store.FONT_SIZE is not None:
             formatted_text = "{{size={}}} {}{{/size}}".format(store.FONT_SIZE, text)
         else:
@@ -147,10 +151,10 @@ init python:
             renpy.say(speaker, formatted_text)
         if not persistent.voice_interrupt_on_page:
             renpy.music.stop(channel="voice")
-        if store.EF_KAISOU_ACTIVE == True:
-            store.EF_KAISOU_ACTIVE = False
         if store.FLASH_CALLED == True:
             store.FLASH_CALLED = False
+        if store.EF_KAISOU_ACTIVE == True:
+            store.EF_KAISOU_ACTIVE = False
         if getattr(store, 'interruptible_cg_tag', None):
             renpy.hide(store.interruptible_cg_tag, layer='bustlayer')
             store.interruptible_cg_tag = None
@@ -217,6 +221,7 @@ init python:
             if spr_info["filename"] == "ef_kaisou":
                 ef_kaisou_layers.append(layer_id)
         if store.EF_KAISOU_ACTIVE:
+            renpy.log(f"1")
             renpy.scene()
             renpy.show(bg_name, what=Image(bg_path), layer="master",zorder=1)
             renpy.with_statement(Dissolve(duration))
@@ -225,6 +230,7 @@ init python:
         else:
             # 如果有 ef_kaisou 图片
             if ef_kaisou_layers:
+                renpy.log(f"2")
                 renpy.scene()
                 renpy.hide("ef_kaisou_img", layer="bustlayer")
                 renpy.show(bg_name, what=Image(bg_path), layer="master",zorder=1)
@@ -232,6 +238,7 @@ init python:
                 clear_all(True)
                 del store.SPR_DISPLAY[layer_id]
             else:
+                renpy.log(f"3")
                 clear_all(True)
                 renpy.scene()
                 if bg_name.startswith('#'):
@@ -251,17 +258,8 @@ init python:
         if cg_folder == "ex":
             cg_folder = "ev"
         ev_path = f"images/cg/{cg_folder}/{cg_name}.webp"
-        ef_kaisou_layers = []
-        for layer_id, spr_info in store.SPR_DISPLAY.items():
-            if spr_info["filename"] == "ef_kaisou":
-                ef_kaisou_layers.append(layer_id)
         clear_all(True)
         renpy.scene()
-        if ef_kaisou_layers:
-            for layer_id in ef_kaisou_layers:
-                renpy.hide(spr_info["sprite_id"], layer=spr_info["layer"])
-                del store.SPR_DISPLAY[layer_id]
-                store.EF_KAISOU_ACTIVE = False
         renpy.show(cg_name, what=Image(ev_path), layer="master",zorder=1)
         renpy.with_statement(Dissolve(duration_ms / 1000.0))
 
@@ -402,10 +400,7 @@ init python:
                 else:
                     old_img_at_current_pos = Transform(current_img, xpos=current_x, ypos=current_y, anchor=(0, 0))
                 new_img_at_target_pos = Transform(bust_img, xpos=target_x, ypos=target_y, anchor=(0, 0))
-                if offset_x == 0:
-                    switch = delayed_switch_no_offest(old_img_at_current_pos, new_img_at_target_pos, delay_time, fadein_time)
-                else:
-                    switch = delayed_switch_with_offest(old_img_at_current_pos, new_img_at_target_pos, delay_time, fadein_time)
+                switch = delayed_switch(old_img_at_current_pos, new_img_at_target_pos, delay_time, fadein_time)
                 renpy.show(sprite_id, what=switch, layer=layer, zorder=layer_id)
                 store.BUST_DELAY_TIMERS[layer_id] = renpy.get_game_runtime() + delay_time
                 store.BUST_FADEIN_END_TIMERS[layer_id] = renpy.get_game_runtime() + fadein_time
@@ -413,6 +408,7 @@ init python:
                 return
             elif not same_pose or same_pose_diff_expression:# 不同姿势切换或同一姿势不同表情切换
                 renpy.log("3")
+                if is_fadein_active: return
                 # 直接使用 renpy.show 和 with 语句进行 dissolve
                 old_at_pos = Transform(current_img, xpos=current_x, ypos=current_y, anchor=(0, 0))
                 new_at_pos = Transform(bust_img, xpos=target_x, ypos=target_y, anchor=(0, 0))
@@ -706,18 +702,12 @@ init python:
             old_tags = [tag for tag in current_bg_tags if tag != cg_name]
             if not old_tags:
                 clear_all(True)
-                renpy.show(cg_name, what=Image(bs_path), layer='master', at_list=[Fadein_effect(0.5)])
+                renpy.show(cg_name, what=Image(bs_path), layer="master",zorder=1)
+                renpy.with_statement(Dissolve(duration))
             else:
                 clear_all(False)
-                old_tag_to_replace = old_tags[0]
-                old_cg_folder = old_tag_to_replace[:2]
-                if old_cg_folder == "ex":
-                    old_cg_folder = "ev"
-                    renpy.error(f"switch can't use {old_tag_to_replace},all_tags:{old_tags}")
-                old_bs_path = f"images/cg/{old_cg_folder}/{old_tag_to_replace}.webp"
-                if old_cg_folder == "bg":
-                    old_bs_path = f"images/{old_cg_folder}/{old_tag_to_replace}.webp"
-                renpy.show(cg_name, what=switch(old_img=Image(old_bs_path), new_img=Image(bs_path), trans_time=0.5), layer='master')
+                renpy.show(cg_name, what=Image(bs_path), layer="master",zorder=1)
+                renpy.with_statement(Dissolve(duration))
                 for tag in old_tags:
                     renpy.hide(tag, layer='master')
         else:
@@ -802,6 +792,7 @@ init python:
                 renpy.hide(spr_info["sprite_id"], layer=spr_info["layer"])
                 renpy.show(spr_info["sprite_id"]+"_temp", what=At(Image(f"images/misc/{spr_info['filename']}.png"), fadeout_down_move(50,fade_duration)), layer=spr_info["layer"])
                 store.interruptible_bserase_tags.append(spr_info["sprite_id"]+"_temp")
+                renpy.pause(fade_duration)
                 store.BUST_FADEIN_END_TIMERS[layer_id] = renpy.get_game_runtime() + fade_duration
             del store.SPR_DISPLAY[layer_id]
 
@@ -953,7 +944,7 @@ init python:
 
     def _PlayMovie(params):
         filename,fade_time,u1,video_end = params
-        renpy.stop_skipping()
+        config.skipping = None
         # 淡出所有图片
         clear_all(True)
         renpy.scene()
@@ -1028,9 +1019,11 @@ init python:
 
     def f_391(params):
         duration, u1 = params
+        _window_hide(trans=False, auto=True)
+        renpy.show("white_bg", what=Solid("#ffffff"), at_list=[Fadein_effect(duration/ 1000.0)], layer="bustlayer",zorder=10)
         renpy.pause(duration/ 1000.0)
-        clear_all(True)
-        renpy.show("white_bg", what=Solid("#ffffff"), at_list=[Fadein_effect(duration/ 1000.0)], layer="bustlayer",zorder=10) 
+        clear_all(False)
+        store.WHITE_BG_ACTIVE = True
 
     def f_234(params):
         speed, intensity, decay_rate, direction, duration_val, u1 = params
@@ -1078,9 +1071,54 @@ init python:
 
     def f_388(params):
         duration, u1 = params
+        if not store.WHITE_BG_ACTIVE: return
+        if not renpy.showing("white_bg", layer="bustlayer"): return
         renpy.pause(duration/ 1000.0)
         renpy.show("white_bg", what=Solid("#ffffff"), at_list=[Fadeout_effect(duration/ 1000.0)], layer="bustlayer",zorder=10)
         renpy.pause(duration/ 1000.0)
         store.interruptible_bserase_tags.append("white_bg")
+        store.WHITE_BG_ACTIVE = False
 
+#=====覆盖renpy函数=====
+    def _custom_enter_menu():
+        config.skipping = None
 
+        renpy.movie_stop(only_fullscreen=True)
+        if not renpy.context()._menu:
+            _window_hide(trans=Dissolve(0.0), auto=True)
+            renpy.take_screenshot((config.thumbnail_width, config.thumbnail_height))
+            store._window = True
+
+        for i in config.menu_clear_layers:
+            renpy.scene(layer=i)
+
+        renpy.context()._menu = True
+        renpy.context()._main_menu = main_menu
+
+        renpy.context_dynamic("main_menu")
+        renpy.context_dynamic("_window_subtitle")
+        renpy.context_dynamic("_window")
+        renpy.context_dynamic("_history")
+        renpy.context_dynamic("_menu")
+
+        renpy.context_dynamic("_side_image_old")
+        renpy.context_dynamic("_side_image_raw")
+        renpy.context_dynamic("_side_image")
+        renpy.context_dynamic("_side_image_attributes")
+        renpy.context_dynamic("_side_image_attributes_reset")
+
+        store._window_subtitle = config.menu_window_subtitle
+        store._window = False
+        store._history = False
+        store._menu = True
+        store._side_image_attributes = None
+        store._side_image_attributes_reset = False
+
+        store.mouse_visible = True
+        store.suppress_overlay = True
+
+        ui.clear()
+
+        for i in config.clear_layers:
+            renpy.scene(layer=i)
+    _enter_menu = _custom_enter_menu

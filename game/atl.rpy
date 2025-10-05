@@ -58,33 +58,13 @@ transform multi_jump(dy=10, base_duration=0.5, delay_time=0.0):
     easein base_duration*0.6 yoffset 0
 
 #TODO:延时切换立绘最优效果是溶解切换（with dissolve 、renpy.with_statement(Dissolve），但是会导致旧立绘在切换错位，`define config.transitions_use_child_placement = False`也会导致新立绘和旧立绘切换动画不能用自己的数据
-transform delayed_switch_no_offest(old_img, new_img, delay_time=0, trans_time=0.20):
+transform delayed_switch(old_img, new_img, delay_time=0, trans_time=0.20):
     subpixel True
-    contains:
-        old_img
-        pause delay_time
-        linear trans_time alpha 0.0
-    contains:
-        alpha 0.0
-        pause delay_time
-        new_img  
-        linear trans_time alpha 1.0
-
-transform delayed_switch_with_offest(old_img, new_img, delay_time=0, trans_time=0.20):
-    subpixel True
-    contains:
-        pos (0, 0)
-        anchor (0, 0)
-        old_img
-        pause delay_time
-        linear trans_time alpha 0.0
-    contains:
-        pos (0, 0)
-        anchor (0, 0)
-        alpha 0.0
-        pause delay_time
-        new_img  
-        linear trans_time alpha 1.0
+    old_img
+    pause delay_time
+    create_atl_dissolve(old_img,new_img,trans_time)
+    pause trans_time
+    new_img
 
 transform switch(old_img, new_img, trans_time=0.20):
     old_img

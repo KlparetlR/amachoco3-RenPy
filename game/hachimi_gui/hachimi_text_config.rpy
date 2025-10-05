@@ -1,8 +1,3 @@
-# 以下代码全部由天马咲希型千趣编写，属于 UI 代码
-# 禁止未通知本人的情况下修改本文件代码的任何部分或数值
-# 一旦未经告知本人而进行修改，出现任何问题，不负责任何维护义务，因为那不是我造成的，不要给我徒增工作量，谢谢喵
-# 目前的代码已经过充分的测试验证过可行性与稳定性，因为修改文件导致新增的潜在Bug，也请自己测试与负责
-
 screen hachimi_text_config():
     tag menu
     modal True
@@ -225,4 +220,4 @@ screen hachimi_text_config():
         idle "gui/hachimi_gui/config/config_ask_1.png" at Transform(zoom=1.2)
         hover "gui/hachimi_gui/config/config_ask_2.png"
         hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-        action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Alert("移植交流与反馈群：255105631（Setaria咖啡馆）\n或者点击本行文本直接申请加入\n欢迎各位来咖啡馆玩~\n在此也募集逆向、跨引擎、RenPy方面的大佬\n一起开展与完善新项目")]
+        action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Alert("移植交流与反馈群：255105631（Setaria咖啡厅）\n{a=https://qm.qq.com/q/oMdtKloUCs}{u}{color=#6a3615}或者点击本行文本直接申请加入{/color}{/u}{/a}\n欢迎各位来咖啡厅玩~\n在此也募集逆向、跨引擎、RenPy方面的大佬\n一起开展与完善新项目")]

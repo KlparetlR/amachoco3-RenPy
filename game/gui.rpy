@@ -329,7 +329,7 @@ define gui.unscrollable = "hide"
 ## 历史记录屏幕显示玩家已经阅读过的对话。
 
 ## Ren'Py 将保留的对话历史块数。
-define config.history_length = 300
+define config.history_length = 75
 
 ## 历史屏幕条目的高度，或设置为 None 以使高度变量自适应。
 define gui.history_height = 210

@@ -1,8 +1,3 @@
-# 以下代码全部由天马咲希型千趣编写，属于 UI 代码
-# 禁止未通知本人的情况下修改本文件代码的任何部分或数值
-# 一旦未经告知本人而进行修改，出现任何问题，不负责任何维护义务，因为那不是我造成的，不要给我徒增工作量，谢谢喵
-# 目前的代码已经过充分的测试验证过可行性与稳定性，因为修改文件导致新增的潜在Bug，也请自己测试与负责
-
 screen hachimi_load():
     tag menu
     modal True
@@ -95,18 +90,18 @@ screen hachimi_load():
                 selected_hover "gui/hachimi_gui/save_load/save_load_quick_2.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
                 action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), With(Dissolve(0.3)), FilePage("quick")]
-        if config.has_autosave:
-            imagebutton:
-                xpos 0.88
-                ypos 0.04
-                at transform:
-                    zoom 1.3
-                idle "gui/hachimi_gui/save_load/save_load_auto_1.png"
-                hover "gui/hachimi_gui/save_load/save_load_auto_2.png"
-                selected_idle "gui/hachimi_gui/save_load/save_load_auto_2.png"
-                selected_hover "gui/hachimi_gui/save_load/save_load_auto_2.png"
-                hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), With(Dissolve(0.3)), FilePage("auto")]
+        # if config.has_autosave:
+        #     imagebutton:
+        #         xpos 0.88
+        #         ypos 0.04
+        #         at transform:
+        #             zoom 1.3
+        #         idle "gui/hachimi_gui/save_load/save_load_auto_1.png"
+        #         hover "gui/hachimi_gui/save_load/save_load_auto_2.png"
+        #         selected_idle "gui/hachimi_gui/save_load/save_load_auto_2.png"
+        #         selected_hover "gui/hachimi_gui/save_load/save_load_auto_2.png"
+        #         hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
+        #         action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), With(Dissolve(0.3)), FilePage("auto")]
         imagebutton:
             xpos 0.253
             ypos 0.04

@@ -1,8 +1,3 @@
-# 以下代码全部由天马咲希型千趣编写，属于 UI 代码
-# 禁止未通知本人的情况下修改本文件代码的任何部分或数值
-# 一旦未经告知本人而进行修改，出现任何问题，不负责任何维护义务，因为那不是我造成的，不要给我徒增工作量，谢谢喵
-# 目前的代码已经过充分的测试验证过可行性与稳定性，因为修改文件导致新增的潜在Bug，也请自己测试与负责
-
 screen hachimi_system_config():
     tag menu
     modal True
@@ -20,14 +15,14 @@ screen hachimi_system_config():
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("angle2"), SetField(persistent,"windows_api", 2)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("angle2"), SetField(persistent,"windows_api", 2)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.348
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"windows_api", 3)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"windows_api", 3)])]
         elif persistent.windows_api == 2:
             imagebutton:
                 xpos 0.53
@@ -35,7 +30,7 @@ screen hachimi_system_config():
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"windows_api", 1)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"windows_api", 1)])]
             imagebutton:
                 xpos 0.53
                 ypos 0.348
@@ -46,7 +41,7 @@ screen hachimi_system_config():
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"windows_api", 3)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"windows_api", 3)])]
         elif persistent.windows_api == 3:
             imagebutton:
                 xpos 0.53
@@ -54,14 +49,14 @@ screen hachimi_system_config():
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"windows_api", 1)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"windows_api", 1)])]
             imagebutton:
                 xpos 0.53
                 ypos 0.348
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("angle2"), SetField(persistent,"windows_api", 2)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("angle2"), SetField(persistent,"windows_api", 2)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.348
@@ -77,7 +72,7 @@ screen hachimi_system_config():
                 xpos 0.715
                 ypos 0.253
                 idle "gui/hachimi_gui/config/config_block_1.png"
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gles2"), SetField(persistent,"android_api", 2)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gles2"), SetField(persistent,"android_api", 2)])]
         elif persistent.android_api == 2:
             imagebutton:
                 xpos 0.53
@@ -85,7 +80,7 @@ screen hachimi_system_config():
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"android_api", 1)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"android_api", 1)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.253
@@ -101,12 +96,12 @@ screen hachimi_system_config():
                 xpos 0.715
                 ypos 0.253
                 idle "gui/hachimi_gui/config/config_block_1.png"
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gles2"), SetField(persistent,"linux_api", 2)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gles2"), SetField(persistent,"linux_api", 2)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.348
                 idle "gui/hachimi_gui/config/config_block_1.png"
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"linux_api", 3)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"linux_api", 3)])]
         elif persistent.linux_api == 2:
             imagebutton:
                 xpos 0.53
@@ -114,7 +109,7 @@ screen hachimi_system_config():
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"linux_api", 1)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"linux_api", 1)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.253
@@ -123,7 +118,7 @@ screen hachimi_system_config():
                 xpos 0.715
                 ypos 0.348
                 idle "gui/hachimi_gui/config/config_block_1.png"
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"linux_api", 3)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"linux_api", 3)])]
         elif persistent.linux_api == 3:
             imagebutton:
                 xpos 0.53
@@ -131,12 +126,12 @@ screen hachimi_system_config():
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"linux_api", 1)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"linux_api", 1)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.253
                 idle "gui/hachimi_gui/config/config_block_1.png"
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gles2"), SetField(persistent,"linux_api", 2)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gles2"), SetField(persistent,"linux_api", 2)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.348
@@ -152,7 +147,7 @@ screen hachimi_system_config():
                 xpos 0.715
                 ypos 0.348
                 idle "gui/hachimi_gui/config/config_block_1.png"
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"mac_api", 2)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"mac_api", 2)])]
         elif persistent.mac_api == 2:
             imagebutton:
                 xpos 0.53
@@ -160,7 +155,7 @@ screen hachimi_system_config():
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"mac_api", 1)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"mac_api", 1)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.348
@@ -176,12 +171,12 @@ screen hachimi_system_config():
                 xpos 0.715
                 ypos 0.253
                 idle "gui/hachimi_gui/config/config_block_1.png"
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gles2"), SetField(persistent,"linux_api", 2)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gles2"), SetField(persistent,"linux_api", 2)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.348
                 idle "gui/hachimi_gui/config/config_block_1.png"
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"linux_api", 3)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"linux_api", 3)])]
         elif persistent.linux_api == 2:
             imagebutton:
                 xpos 0.53
@@ -189,7 +184,7 @@ screen hachimi_system_config():
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"linux_api", 1)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"linux_api", 1)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.253
@@ -198,7 +193,7 @@ screen hachimi_system_config():
                 xpos 0.715
                 ypos 0.348
                 idle "gui/hachimi_gui/config/config_block_1.png"
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"linux_api", 3)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gl2"), SetField(persistent,"linux_api", 3)])]
         elif persistent.linux_api == 3:
             imagebutton:
                 xpos 0.53
@@ -206,12 +201,12 @@ screen hachimi_system_config():
                 idle "gui/hachimi_gui/config/config_block_1.png" 
                 hover "gui/hachimi_gui/config/config_block_hover.png"
                 hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"linux_api", 1)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("auto"), SetField(persistent,"linux_api", 1)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.253
                 idle "gui/hachimi_gui/config/config_block_1.png"
-                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改\n重启后生效", [_SetRenderer("gles2"), SetField(persistent,"linux_api", 2)])]
+                action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"), Confirm("是否确认更改？\n重启后生效", [_SetRenderer("gles2"), SetField(persistent,"linux_api", 2)])]
             imagebutton:
                 xpos 0.715
                 ypos 0.348
@@ -294,21 +289,21 @@ screen hachimi_system_config():
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", 30))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", 30))]
         imagebutton:
             xpos 0.53
             ypos 0.613
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", 60))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", 60))]
         imagebutton:
             xpos 0.715
             ypos 0.613
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", 120))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", 120))]
     elif preferences.gl_framerate == 30:
         imagebutton:
             xpos 0.53
@@ -316,7 +311,7 @@ screen hachimi_system_config():
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", None))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", None))]
         imagebutton:
             xpos 0.715
             ypos 0.53
@@ -327,14 +322,14 @@ screen hachimi_system_config():
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", 60))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", 60))]
         imagebutton:
             xpos 0.715
             ypos 0.613
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", 120))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", 120))]
     elif preferences.gl_framerate == 60:
         imagebutton:
             xpos 0.53
@@ -342,14 +337,14 @@ screen hachimi_system_config():
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", None))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", None))]
         imagebutton:
             xpos 0.715
             ypos 0.53
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", 30))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", 30))]
         imagebutton:
             xpos 0.53
             ypos 0.613
@@ -360,7 +355,7 @@ screen hachimi_system_config():
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", 120))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", 120))]
     elif preferences.gl_framerate == 120:
         imagebutton:
             xpos 0.53
@@ -368,21 +363,21 @@ screen hachimi_system_config():
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", None))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", None))]
         imagebutton:
             xpos 0.715
             ypos 0.53
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", 30))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", 30))]
         imagebutton:
             xpos 0.53
             ypos 0.613
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改\n重启后生效",Preference("gl framerate", 60))]
+            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Confirm("是否确认更改？\n重启后生效",Preference("gl framerate", 60))]
         imagebutton:
             xpos 0.715
             ypos 0.613
@@ -400,7 +395,7 @@ screen hachimi_system_config():
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Confirm("是否确认更改\n重启后生效", SetVariable("persistent.chosen_font", font_options["思源黑体"]))]
+            action [Confirm("是否确认更改？\n重启后生效", SetVariable("persistent.chosen_font", font_options["思源黑体"]))]
 
     if persistent.chosen_font == font_options["猫啃什锦体"]:
         imagebutton:
@@ -414,7 +409,7 @@ screen hachimi_system_config():
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Confirm("是否确认更改\n重启后生效", SetVariable("persistent.chosen_font", font_options["猫啃什锦体"]))]
+            action [Confirm("是否确认更改？\n重启后生效", SetVariable("persistent.chosen_font", font_options["猫啃什锦体"]))]
 
     if persistent.chosen_font == font_options["萝莉体"]:
         imagebutton:
@@ -428,7 +423,7 @@ screen hachimi_system_config():
             idle "gui/hachimi_gui/config/config_block_1.png" 
             hover "gui/hachimi_gui/config/config_block_hover.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Confirm("是否确认更改\n重启后生效", SetVariable("persistent.chosen_font", font_options["萝莉体"]))]
+            action [Confirm("是否确认更改？\n重启后生效", SetVariable("persistent.chosen_font", font_options["萝莉体"]))]
 
     hbox:
         xpos 0.072
@@ -496,4 +491,4 @@ screen hachimi_system_config():
         idle "gui/hachimi_gui/config/config_ask_1.png" at Transform(zoom=1.2)
         hover "gui/hachimi_gui/config/config_ask_2.png"
         hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-        action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Alert("移植交流与反馈群：255105631（Setaria咖啡馆）\n或者点击本行文本直接申请加入\n欢迎各位来咖啡馆玩~\n在此也募集逆向、跨引擎、RenPy方面的大佬\n一起开展与完善新项目")]
+        action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),Alert("移植交流与反馈群：255105631（Setaria咖啡厅）\n{a=https://qm.qq.com/q/oMdtKloUCs}{u}{color=#6a3615}或者点击本行文本直接申请加入{/color}{/u}{/a}\n欢迎各位来咖啡厅玩~\n在此也募集逆向、跨引擎、RenPy方面的大佬\n一起开展与完善新项目")]

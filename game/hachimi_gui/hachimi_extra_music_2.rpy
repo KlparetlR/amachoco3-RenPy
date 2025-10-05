@@ -1,12 +1,7 @@
-# 以下代码全部由天马咲希型千趣编写，属于 UI 代码
-# 禁止未通知本人的情况下修改本文件代码的任何部分或数值
-# 一旦未经告知本人而进行修改，出现任何问题，不负责任何维护义务，因为那不是我造成的，不要给我徒增工作量，谢谢喵
-# 目前的代码已经过充分的测试验证过可行性与稳定性，因为修改文件导致新增的潜在Bug，也请自己测试与负责
-
 screen hachimi_extra_music_2():
     tag menu
     modal True
-    key "mousedown_3" action [Play("sys_sound_3","gui/hachimi_gui/sound/sys_sound_3.ogg"),ShowMenu("main_menu_2"),Play("music", "audio/bgm/bgm012.ogg")]
+    key "mousedown_3" action [Notify("结束音乐鉴赏，恢复标题界面默认背景音乐"), Play("sys_sound_3","gui/hachimi_gui/sound/sys_sound_3.ogg"),ShowMenu("main_menu_2"),Play("music", "audio/bgm/bgm012.ogg")]
     add "gui/hachimi_gui/extra/extra_bg.png"
     hbox:
         xalign 0.78
@@ -15,7 +10,7 @@ screen hachimi_extra_music_2():
         imagebutton:
             idle "gui/hachimi_gui/under_button/under_title_1.png"
             hover "gui/hachimi_gui/under_button/under_title_2.png"
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),ShowMenu("main_menu_2"),Play("music", "audio/bgm/bgm012.ogg")]
+            action [Notify("结束音乐鉴赏，恢复标题界面默认背景音乐"), Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),ShowMenu("main_menu_2"),Play("music", "audio/bgm/bgm012.ogg")]
         imagebutton:
             idle "gui/hachimi_gui/under_button/under_exit_1.png"
             hover "gui/hachimi_gui/under_button/under_exit_2.png"
@@ -110,7 +105,7 @@ screen hachimi_extra_music_2():
             idle "gui/hachimi_gui/extra/extra_back_1.png"
             hover "gui/hachimi_gui/extra/extra_back_2.png"
             hovered Play("sys_sound_1","gui/hachimi_gui/sound/sys_sound_1.ogg")
-            action [Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),ShowMenu("main_menu_2"),Play("music", "audio/bgm/bgm012.ogg")]
+            action [Notify("结束音乐鉴赏，恢复标题界面默认背景音乐"), Play("sys_sound_2","gui/hachimi_gui/sound/sys_sound_2.ogg"),ShowMenu("main_menu_2"),Play("music", "audio/bgm/bgm012.ogg")]
 
     hbox:
         xalign 0.75

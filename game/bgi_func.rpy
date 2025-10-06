@@ -211,8 +211,8 @@ init python:
         renpy.music.set_volume(target_volume / 233.3, fade_duration_ms / 1000.0, channel)
 
     def _PresetBG(params):
-        # [背景图片名, 过渡时间(ms), 未知参数1, 未知参数2]
-        bg_name, duration_ms, u1, u2 = params
+        # [背景图片名, 过渡时间(ms), 未知参数1, mask]
+        bg_name, duration_ms, u1, mask_name = params
         duration = duration_ms / 1000.0
         bg_path = f"images/bg/{bg_name}.webp"
         renpy.music.stop(channel="voice")
@@ -245,7 +245,11 @@ init python:
                     renpy.show_screen("solid_bg", bg_name)
                 else:
                     renpy.show(bg_name, what=Image(bg_path), layer="master",zorder=1)
-                renpy.with_statement(Dissolve(duration))
+                if mask_name != 0:
+                    mask_path = f"images/mask/{mask_name}.png"
+                    renpy.with_statement(ImageDissolve(mask_path, duration_ms / 1000.0, reverse=True, ramplen=256))
+                else:
+                    renpy.with_statement(Dissolve(duration))
                 if getattr(store, 'interruptible_bserase_tags', []):
                     for tag_to_hide in store.interruptible_bserase_tags:
                         renpy.hide(tag_to_hide,layer="bustlayer")
@@ -334,6 +338,21 @@ init python:
             if layer_id in store.STORE_BUST_POS:
                 offset_x = store.STORE_BUST_POS[layer_id].get("offset_x", 0)
         else:
+            layers_to_remove = []
+            for existing_layer_id, pos_info in store.STORE_BUST_POS.items():
+                # 跳过当前要操作的图层
+                if existing_layer_id == layer_id:
+                    continue
+                # 检查是否是相同的角色（bust_key）
+                existing_bust_key = pos_info.get("full_name", "")[:3]
+                if existing_bust_key == bust_key:
+                    layers_to_remove.append(existing_layer_id)
+            # 清除找到的图层
+            if layers_to_remove:
+                _bserase([108, 0, layer_id, 30, 400, -256])
+                for remove_layer_id in layers_to_remove:
+                    renpy.log(f"清除图层 {remove_layer_id} 的 {bust_key} 立绘，因为在图层 {layer_id} 显示了新的 {bust_key} 立绘")
+                    _bserase([108, 0, remove_layer_id, 30, 400, -256]) 
             store.BUST_LAST_LAYER[bust_key] = layer_id
             # 如果图层已存在，继承其偏移值
             if layer_id in store.STORE_BUST_POS:
